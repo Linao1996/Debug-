@@ -1,0 +1,6 @@
+4.12
+@ windows下文件到linux打开，中文出现乱码，原因是：windows下默认文件编码格式为GBK，而linux为UTF-8。
+解决方案：
+1、windows下用记事本打开，手动另存为utf-8格式
+2、linux下使用iconv命令：
+iconv -f GBK -t UTF-8 CrashCode.java CrashCode2.java
