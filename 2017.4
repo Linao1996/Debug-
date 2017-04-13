@@ -10,9 +10,13 @@ iconv -f GBK -t UTF-8 CrashCode.java CrashCode2.java
 是国际标准化组织内ISO/IEC 8859的第一个8位字符集。它以ASCII为基础，在空置的0xA0-0xFF的范围内，
 加入96个字母及符号，藉以供使用附加符号的拉丁字母语言使用。
 2、Linux默认unicode编码方式为utf-8，Windows默认unicode编码方式为utf-16
+===============================================================
 4.13
-什么是BOM？BOM = Byte Order MarkBOM是Unicode规范中推荐的标记字节顺序的方法。比如说对于UTF-16，如果接收者收到的BOM是FEFF，
+@什么是BOM？BOM = Byte Order MarkBOM是Unicode规范中推荐的标记字节顺序的方法。比如说对于UTF-16，如果接收者收到的BOM是FEFF，
 表明这个字节流是Big-Endian的；如果收到FFFE，就表明这个字节流是Little-Endian的。UTF-8不需要BOM来表明字节顺序，
 但可以用BOM来表明“我是UTF-8编码”。BOM的UTF-8编码是EF BB BF（用UltraEdit打开文本、切换到16进制可以看到）。
 所以如果接收者收到以EF BB BF开头的字节流，就知道这是UTF-8编码了。
 所有的BOM在C/C++/Java中都被处理为"\uFEFF"，参考：http://www.fileformat.info/info/unicode/char/feff/index.htm
+
+intellij中对于utf-8 +bom文件识别失败，解决方案：
+先转化为utf-16，在转会utf-8即可
