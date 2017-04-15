@@ -20,3 +20,17 @@ iconv -f GBK -t UTF-8 CrashCode.java CrashCode2.java
 
 intellij中对于utf-8 +bom文件识别失败，解决方案：
 先转化为utf-16，在转会utf-8即可
+==================================================================
+4.14
+@debug时printf是万能的
+@windows中sleep单位为毫秒，头文件为windows.h
+linux 下sleep单位为秒，头文件为unistd.h，若想更为精细，应使用usleep，单位为微秒（microsecond，1e6 second）
+@指定进程运行cpu，使用sched_setaffinity()方法，必须加入#define _GNU_SOURCE 和 #include<sched.h>
+@ 编译用到math.h 文件的c时，需要指定-lm，（gcc a.c -o a.o -lm )原因：
+The functions in stdlib.h and stdio.h have implementations in libc.so (or libc.a for static linking), 
+which is linked into your executable by default (as if -lc were specified). 
+GCC can be instructed to avoid this automatic link with the -nostdlib or -nodefaultlibs options.
+
+The math functions in math.h have implementations in libm.so (or libm.a for static linking),
+and libm is not linked in by default. There are historical reasons for this libm/libc split, 
+none of them very convincing.
